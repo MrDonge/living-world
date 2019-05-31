@@ -1,0 +1,73 @@
+.personal-container {
+    min-height: calc(100vh - 50px);
+    width: 100%;
+
+    .personal-view {
+        padding-top: 50px;
+
+        .top-header {
+            width: 100%;
+            height: 180px;
+            background: url(../../assets/imgs/personal-bg.jpg) no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+
+            .top-header-wrapper {
+                position: absolute;
+                left: 20px;
+                bottom: -30px;
+                display: flex;
+                z-index: 9;
+
+                .personal-avatar {
+                    border-radius: 50%;
+                    background: #fff;
+                    z-index: 11;
+
+                    .avatar {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+
+                .top-personal {
+                    align-self: flex-end;
+                    margin-left: 8px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .personal-menu {
+            padding: 40px 20px 0;
+
+            .menu-list {
+                display: flex;
+                flex-direction: column;
+
+                .menu-item {
+                    height: 45px;
+                    line-height: 45px;
+                    border-bottom: 1px solid #f0f0f0;
+
+                    .iconfont {
+                        font-size: 20px;
+                        color: #00a4ff;
+                    }
+
+                    .menu-title {
+                        margin-left: 8px;
+                    }
+
+                    .icon-go {
+                        position: absolute;
+                        right: 20px;
+                        font-size: 16px;
+                        color: #333;
+                    }
+
+                }
+            }
+        }
+    }
+}

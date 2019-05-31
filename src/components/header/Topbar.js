@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './header.scss'
+import './topbar.scss'
 
-export default class BlogHeader extends Component {
+export default class TopBar extends Component {
     render() {
         return (
             <header className="navbar-header">
