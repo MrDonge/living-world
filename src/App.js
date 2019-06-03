@@ -7,11 +7,15 @@ import {
     NavLink
 } from 'react-router-dom'
 
-import Home from './views/homepage/Home'
-import Creation from './views/createion/Creation'
+import TabBarNav from './components/tabbar/TabBarNav';
+import Creation from './views/creation/Creation'
 import Personal from './views/personal/Personal'
+import Register from './views/register/Register'
+import Login from './views/login/Login';
+import Home from './views/homepage/Home'
 
 import 'normalize.css'
+import 'antd-mobile/dist/antd-mobile.css'
 import './app.scss'
 
 class App extends React.Component {
@@ -22,34 +26,18 @@ class App extends React.Component {
             <Router>
                 <div className="App">
                     <main className="main-view">
-                        <Switch>
-                            <Route path="/homepage" component={Home} />
-                            <Route path="/creation" component={Creation} />
-                            <Route path="/personal" component={Personal} />
-                            <Redirect from="/" to="/homepage" />
-                            <Route component={Home} />
-                        </Switch>
+                        {/* <Switch> */}
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/homepage" component={Home} />
+                        <Route path="/creation" component={Creation} />
+                        <Route path="/personal" component={Personal} />
+                        <Route exact path="/homepage" component={TabBarNav} />
+                        <Route exact path="/personal" component={TabBarNav} />
+                        {/* <Redirect from="/" to="/homepage" />
+                            <Route component={Home} /> */}
+                        {/* </Switch> */}
                     </main>
-                    <footer className="nav-tabs">
-                        <div className="tab-item">
-                            <NavLink className="nav-link" to="/homepage" replace>
-                                <i className="iconfont icon-home"></i>
-                                <span>主页</span>
-                            </NavLink>
-                        </div>
-                        {/* <div className="tab-item">
-                        <NavLink className="nav-link" to="/creation" replace>
-                            <i className="iconfont icon-createicon"></i>
-                            <span>创作</span>
-                        </NavLink>
-                    </div> */}
-                        <div className="tab-item">
-                            <NavLink className="nav-link" to="/personal" replace>
-                                <i className="iconfont icon-caidaniconwodehui"></i>
-                                <span>我的</span>
-                            </NavLink>
-                        </div>
-                    </footer>
                 </div>
             </Router>
         );

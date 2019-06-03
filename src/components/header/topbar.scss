@@ -4,9 +4,36 @@
     right: 0;
     top: 0;
     height: 50px;
-    line-height: 50px;
-    text-align: center;
+    // line-height: 50px;
+    // text-align: center;
     font-size: 16px;
     background: #75caf8;
     color: #fff;
+
+    .header-wrapper {
+        height: 100%;
+        padding: 0 10px;
+
+        .header-left {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+
+            i {
+                font-size: 22px;
+            }
+        }
+
+        .header-title {
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .header-right {
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            text-align: center;
+        }
+    }
 }
