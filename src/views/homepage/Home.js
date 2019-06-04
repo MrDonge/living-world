@@ -34,6 +34,11 @@ export default class Home extends Component {
         })
     }
 
+    goDetail = (id) => {
+        console.log(id);
+        this.props.history.push('/article/' + id)
+    }
+
     render() {
         const defaultUserImg = require('../../assets/imgs/head-img.png')
         return (
@@ -46,7 +51,7 @@ export default class Home extends Component {
                                 this.state.list.map(item => {
                                     return (
                                         <div className="blog-post-wrap" key={item.id}>
-                                            <div className="blog-post">
+                                            <div className="blog-post" onClick={() => this.goDetail(item.id)}>
                                                 <div className="post-user">
                                                     <img src={item.avatar ? item.avatar : defaultUserImg} alt={item.username} className="avatar" />
                                                     <span>{item.username}</span>

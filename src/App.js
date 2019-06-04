@@ -4,7 +4,7 @@ import {
     Route,
     Redirect,
     Switch,
-    NavLink
+    NavLink,
 } from 'react-router-dom'
 
 import TabBarNav from './components/tabbar/TabBarNav';
@@ -17,6 +17,7 @@ import Home from './views/homepage/Home'
 import 'normalize.css'
 import 'antd-mobile/dist/antd-mobile.css'
 import './app.scss'
+import Article from './views/article/Article';
 
 class App extends React.Component {
 
@@ -30,6 +31,7 @@ class App extends React.Component {
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path="/homepage" component={Home} />
+                        <Route path="/article/:id" component={Article} />
                         <Route path="/creation" component={Creation} />
                         <Route path="/personal" component={Personal} />
                         <Route exact path="/homepage" component={TabBarNav} />
@@ -37,6 +39,17 @@ class App extends React.Component {
                         {/* <Redirect from="/" to="/homepage" />
                             <Route component={Home} /> */}
                         {/* </Switch> */}
+                        {/* <Switch>
+                            <Route path="/" component={TabBarNav}>
+                                <Route path="/homepage" component={Home} />
+                                <Route path="/personal" component={Personal} />
+                            </Route>
+                            <Route path="/login" component={Login} />
+                            <Route path="/register" component={Register} />
+                            <Route path="/homepage" component={Home} />
+                            <Route path="/creation" component={Creation} />
+                            <Route path="/article/:id" component={Article} />
+                        </Switch> */}
                     </main>
                 </div>
             </Router>
