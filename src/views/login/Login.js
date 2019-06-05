@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-
-import { Flex, List, InputItem, WhiteSpace, Button } from 'antd-mobile';
+import { Flex, List, InputItem, WhiteSpace, Button, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form'
 
-export default class Login extends Component {
+import { userLogin } from '../../api/sign'
+
+class LoginModule extends Component {
 
     constructor(props) {
         super(props)
@@ -13,27 +14,52 @@ export default class Login extends Component {
     }
 
     handleLogin = () => {
-        console.log(this)
-        this.props.history.push('/homepage')
+
+        const params = this.props.form.getFieldsValue()
+
+        userLogin(params).then(res => {
+            if (res.code === 0) {
+                Toast.info('登录成功')
+                // 延迟跳转
+                setTimeout(() => {
+                    this.props.history.push('/personal')
+                }, 1000);
+            } else {
+                Toast.info(res.message)
+            }
+        })
+
     }
 
     render() {
-        // const { getFieldProps } = this.props.form;
+        const { getFieldProps } = this.props.form;
         return (
-            <Flex direction="column" align="stretch" justify="between" style={{ margin: '200px 10px' }}>
+            <Flex direction="column" align="stretch" justify="between" style={{ margin: '20px' }}>
+                <div className="logo">
+                    <img src={[require('../../assets/imgs/logo.png')]} alt="logo" className="logo-img" />
+                    <div className="welcome">即将打开新世界的大门</div>
+                </div>
+                <WhiteSpace />
                 <List>
                     <InputItem
                         placeholder="请输入用户名"
-                        ref={el => this.autoFocusInst = el}
+                        clear
+                        {...getFieldProps('account')}
                     ></InputItem>
                     <InputItem
                         placeholder="请输入密码"
-                        ref={el => this.inputRef = el}
+                        type="password"
+                        {...getFieldProps('password')}
                     ></InputItem>
                 </List>
                 <WhiteSpace />
                 <Button type="primary" onClick={this.handleLogin}>登录</Button>
+                <WhiteSpace />
+                <Button onClick={() => this.props.history.push('/register')}>注册</Button>
             </Flex>
         )
     }
 }
+const Login = createForm()(LoginModule);
+
+export default Login

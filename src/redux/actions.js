@@ -9,3 +9,8 @@ export const showNavbar = showStatus => {
 export const getUserStatus = status => {
     return { type: ActionTypes.USER_STATUS, status }
 }
+
+
+export const login = params => {
+    return { type: ActionTypes.USER_LOGIN, params }
+}

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'https://easy-mock.com/mock/5cef9a8f9ffe6536b286e49f/mobile-blog',
-    timeout: 1000
+    baseURL: 'http://localhost:8080',
+    timeout: 30000
 })
 
 instance.interceptors.request.use(
