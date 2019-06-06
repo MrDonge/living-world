@@ -5,6 +5,9 @@ const router = express.Router()
 // 密码加密模块
 const sha1 = require('sha1');
 
+// 引入 JWT 生成 token
+const jwt = require('jsonwebtoken')
+
 const UserModel = require('../models/user')
 
 router.post('/', (req, res, next) => {
@@ -20,7 +23,6 @@ router.post('/', (req, res, next) => {
             throw new Error('密码为空')
         }
     } catch (e) {
-        global.response(-1, e.message, '', res)
         res.json({
             code: -1,
             message: e.message,
@@ -46,15 +48,23 @@ router.post('/', (req, res, next) => {
                     message: "用户名或密码错误"
                 })
             } else {
+
                 // 删除返给前台的密码信息
                 result = JSON.parse(JSON.stringify(result))
                 delete result.password
+
+                // 根据用户账号和 ID 生成 token
+                const token = jwt.sign({ id: result.id, account: result.account }, 'donge', { expiresIn: 3600 })
+
                 req.session.user = result
+
                 res.json({
                     code: 0,
                     message: "success",
-                    result
+                    result,
+                    token
                 })
+
             }
         }
 

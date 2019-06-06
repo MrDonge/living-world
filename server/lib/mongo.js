@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const config = require('../config/default')
 
-mongoose.connect(config.mongodb)
+mongoose.connect(config.mongodb, { useNewUrlParser: true })
 
 
 /**

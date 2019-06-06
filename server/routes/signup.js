@@ -47,6 +47,10 @@ router.post('/', (req, res, next) => {
 
     UserModel.create(user).then(result => {
 
+        result = JSON.parse(JSON.stringify(result))
+        delete result.password
+        req.session.user = result
+
         res.json({
             code: 0,
             result,

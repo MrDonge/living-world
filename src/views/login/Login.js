@@ -4,6 +4,8 @@ import { createForm } from 'rc-form'
 
 import { userLogin } from '../../api/sign'
 
+import cookie from 'react-cookies'
+
 class LoginModule extends Component {
 
     constructor(props) {
@@ -19,6 +21,7 @@ class LoginModule extends Component {
 
         userLogin(params).then(res => {
             if (res.code === 0) {
+                cookie.save('token', res.token)
                 Toast.info('登录成功')
                 // 延迟跳转
                 setTimeout(() => {
