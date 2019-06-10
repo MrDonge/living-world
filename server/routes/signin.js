@@ -54,7 +54,7 @@ router.post('/', (req, res, next) => {
                 delete result.password
 
                 // 根据用户账号和 ID 生成 token
-                const token = jwt.sign({ id: result.id, account: result.account }, 'donge', { expiresIn: 3600 })
+                const token = jwt.sign({ id: result.id, account: result.account }, 'donge')
 
                 req.session.user = result
 

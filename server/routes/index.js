@@ -20,5 +20,5 @@ module.exports = app => {
     // 登录
     app.use('/login', require('./signin'))
     // 发表文章
-    app.use('/createArticle', require('./article'))
+    app.use('/article', require('./article'))
 }

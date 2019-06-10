@@ -34,7 +34,13 @@ export default class Creation extends Component {
         const params = { ...this.state }
 
         createArticle(params).then(res => {
-            console.log(res)
+            if (res.code === 0) {
+                Toast.info('创建成功')
+                this.props.history.push('/homepage')
+            } else {
+                Toast.info(res.message)
+                return false
+            }
         })
 
     }

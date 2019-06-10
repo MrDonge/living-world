@@ -3,12 +3,37 @@ import React, { Component } from 'react'
 import TopBar from '../../components/header/Topbar';
 import Scroll from '../../components/scroll/Scroll';
 
+import { getArticleById } from '../../api/article'
+
 import './article.scss'
 export default class Article extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            refreshScroll: false,
+            articleDetail: {}
+        }
+    }
+
+    componentDidMount() {
+        const { id } = this.props.match.params
+        getArticleById(id).then(res => {
+            if (res.code === 0) {
+                this.setState({
+                    articleDetail: res.result
+                }, () => {
+                    this.setState({
+                        refreshScroll: true
+                    })
+                });
+            }
+        })
+    }
+
     /**
      * 监听滚动实现上划显示标题到顶部导航
-     * @param {scroll} scroll 滚动位置
+     * @param {scroll} 滚动位置
      */
     scroll(scroll) {
         // 如果上划
@@ -17,38 +42,19 @@ export default class Article extends Component {
         }
     }
     render() {
+
+        const detail = this.state.articleDetail
+
         return (
             <div className="article-container">
                 <TopBar title="文章详情" showBack={true} onLeft={() => this.props.history.goBack()} />
                 <div className="article-view">
-                    <Scroll onScroll={this.scroll}>
+                    <Scroll refresh={this.state.refreshScroll} onScroll={this.scroll}>
                         <div>
                             <div className="article-title">
-                                <div className="title">what does you think so ?</div>
+                                <div className="title">{detail.title}</div>
                             </div>
-                            <div className="article-content">
-                                while done in asl left iit but i like it and i'm was very like him, so i did it when the weekly,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whein asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whewhile done in asl left iit but i like it and i'm was very like him, so i did it when the weekly,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whein asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whewhile done in asl left iit but i like it and i'm was very like him, so i did it when the weekly,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whein asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whewhile done in asl left iit but i like it and i'm was very like him, so i did it when the weekly,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whein asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whewhile done in asl left iit but i like it and i'm was very like him, so i did it when the weekly,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whein asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe,
-                                in asl left iit but i like it and i'm was very like him, so i did it whe
-                            </div>
+                            <div className="article-content">{detail.content}</div>
                         </div>
                     </Scroll>
                 </div>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { Toast } from 'antd-mobile'
 import cookie from 'react-cookies'
 
 const instance = axios.create({
@@ -27,6 +27,9 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     response => {
+        if (response.data.code !== 0) {
+            Toast.fail(response.data.message || '请求失败')
+        }
         return response.data
     },
     error => {

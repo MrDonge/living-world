@@ -32,7 +32,8 @@ const user = new Schema({
 const article = new Schema({
     title: String,
     content: String,
-    author: mongoose.Types.ObjectId,
+    userId: mongoose.Types.ObjectId,
+    author: { type: String, required: true, validate: /\S+/ },
     pv: Number
 }, {
         versionKey: false
