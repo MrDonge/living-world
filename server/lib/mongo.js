@@ -34,7 +34,18 @@ const article = new Schema({
     content: String,
     userId: mongoose.Types.ObjectId,
     author: { type: String, required: true, validate: /\S+/ },
-    pv: Number
+    meta: {
+        pv: { type: Number, default: 0 },
+        likes: { type: Number, default: 0 },
+        comments: { type: Number, default: 0 }
+    },
+    likesUser: [
+        {
+            id: mongoose.Schema.Types.ObjectId,
+            account: String,
+            avatar: String
+        }
+    ]
 }, {
         versionKey: false
     })

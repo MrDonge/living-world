@@ -1,0 +1,37 @@
+.base-container {
+    padding: 0 12px;
+
+    .base-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        span {
+    margin-left: 6px;
+    line-height: 22px;
+}
+
+        .base-view {
+            display: flex;
+            align-items: center;
+
+            i {
+                font-size: 22px;
+            }
+
+        }
+
+        .base-operator {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+
+            .wrap {
+                margin-left: 12px;
+
+                i {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

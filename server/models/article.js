@@ -20,7 +20,15 @@ module.exports = {
     // 根据文章 id 给 pv 加 1
     incPv(articleId) {
         return Article
-            .update({ _id: articleId }, { $inc: { pv: 1 } })
+            .updateOne({ _id: articleId }, { $inc: { 'meta.pv': 1 } })
             .exec()
     },
+
+
+    // 根据文章 id 更新文章信息
+    updateArticleFileds(articleId, fileds) {
+        return Article.updateOne({ _id: articleId }, { $set: fileds })
+    },
+
+
 }

@@ -22,6 +22,7 @@ class LoginModule extends Component {
         userLogin(params).then(res => {
             if (res.code === 0) {
                 cookie.save('token', res.token)
+                cookie.save('userId', res.result._id)
                 Toast.info('登录成功')
                 // 延迟跳转
                 setTimeout(() => {

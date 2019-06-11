@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import TopBar from '../../components/header/Topbar';
 import Scroll from '../../components/scroll/Scroll';
+import ArticleBase from '../../components/articleBase/ArticleBase';
 
 import { getArticleById } from '../../api/article'
 

@@ -32,3 +32,16 @@ export const getArticleById = articleId => {
         params: articleId
     })
 }
+
+/**
+ * 根据文章 id 改变赞状态
+ * param { articleId }
+ * param { isLike }
+ */
+export const changeLikeStatus = (articleId, isLike) => {
+    return request({
+        url: `article/isLike`,
+        method: "GET",
+        params: { articleId, isLike }
+    })
+}

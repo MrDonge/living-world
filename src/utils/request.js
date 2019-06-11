@@ -27,8 +27,11 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     response => {
-        if (response.data.code !== 0) {
+        if (response.data.code === -1) {
             Toast.fail(response.data.message || '请求失败')
+        }
+        if (response.data.code === 1) {
+            window.location.href = '/login'
         }
         return response.data
     },

@@ -15,17 +15,18 @@
 
                 padding-bottom: 10px;
 
+                box-shadow: 0 0 3px 1px #ccc;
+                border-radius: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                -ms-border-radius: 6px;
+                -o-border-radius: 6px;
+
                 .blog-post {
                     margin-top: 5px;
-                    padding: 10px 12px 10px;
+                    padding: 10px 12px 0;
                     overflow: hidden;
                     cursor: pointer;
-                    box-shadow: 0 0 3px 1px #ccc;
-                    border-radius: 6px;
-                    -webkit-border-radius: 6px;
-                    -moz-border-radius: 6px;
-                    -ms-border-radius: 6px;
-                    -o-border-radius: 6px;
 
                     .post-user {
                         display: flex;
