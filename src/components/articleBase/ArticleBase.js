@@ -3,19 +3,11 @@ import React, { Component } from 'react'
 import './articlebase.scss'
 export default class ArticleBase extends Component {
 
-    componentDidMount() {
-
-    }
-
-    like() {
-        console.log(123)
-    }
-
     render() {
         return (
             <div className="base-container">
                 <div className="base-wrapper">
-                    <div className="base-view">
+                    <div className="base-view" style={this.props.pvStyle}>
                         <i className="iconfont icon-view"></i>
                         <span>{this.props.pv}</span>
                     </div>

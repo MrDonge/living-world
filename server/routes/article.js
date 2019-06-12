@@ -5,7 +5,7 @@ const router = express.Router()
 const checkToken = require('../middlewares/verify')
 const ArticleModel = require('../models/article')
 const UserModel = require('../models/user')
-
+const CommentModel = require('../models/comment')
 
 /**
  * 创建文章
@@ -87,12 +87,22 @@ router.get('/detail/:articleId', checkToken, (req, res, next) => {
         return false
     } else {
         Promise.all([
+            // 文章详情
             ArticleModel.getArticleById(articleId),
-            ArticleModel.incPv(articleId)
+            // 文章浏览量
+            ArticleModel.incPv(articleId),
+            CommentModel.getComments(articleId)
         ]).then(result => {
+            let comments = JSON.parse(JSON.stringify(result[2]))
+            comments.map(item => {
+                delete item.user.password
+            })
             res.json({
                 code: 0,
-                result: result[0],
+                result: {
+                    article: result[0],
+                    comment: comments
+                },
                 message: 'success'
             })
         })
@@ -104,7 +114,7 @@ router.get('/detail/:articleId', checkToken, (req, res, next) => {
  * 点赞取消赞
  */
 
-router.get('/isLike', (req, res, next) => {
+router.get('/isLike', checkToken, (req, res, next) => {
     const { articleId } = req.query
 
     // 找到点赞的文章
@@ -115,7 +125,7 @@ router.get('/isLike', (req, res, next) => {
 
         let likesUserArr = article.likesUser.length ? article.likesUser : []
 
-        // 将当前用户添加到点赞的用户列表
+        // 将点赞用户添加到点赞的用户列表
         UserModel.getLikesUserById(req.session.user._id).then(user => {
 
             let newLikesUser = {}

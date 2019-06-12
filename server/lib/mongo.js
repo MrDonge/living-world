@@ -41,7 +41,7 @@ const article = new Schema({
     },
     likesUser: [
         {
-            id: mongoose.Schema.Types.ObjectId,
+            id: mongoose.Types.ObjectId,
             account: String,
             avatar: String
         }
@@ -56,9 +56,21 @@ const article = new Schema({
  */
 
 const comment = new Schema({
-    author: mongoose.Types.ObjectId,
+    // 评论所在文章 id
+    articleId: { type: mongoose.Types.ObjectId },
+    // 评论者的信息
+    userId: { type: mongoose.Types.ObjectId },
+    user: { type: mongoose.Types.ObjectId },
     content: String,
-    articleId: mongoose.Types.ObjectId
+    // 被赞数
+    likes: { type: Number, default: 0 },
+    likesUser: [
+        {
+            id: mongoose.Types.ObjectId,
+            account: String,
+            avatar: String
+        }
+    ]
 }, {
         versionKey: false
     })
